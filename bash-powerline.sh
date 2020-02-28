@@ -64,9 +64,9 @@ __powerline() {
         # Check the exit code of the previous command and display different
         # colors in the prompt accordingly. 
         if [ $? -eq 0 ]; then
-            local symbol="$COLOR_SUCCESS $PS_SYMBOL $COLOR_RESET"
+            local symbol="$COLOR_SUCCESS$PS_SYMBOL$COLOR_RESET"
         else
-            local symbol="$COLOR_FAILURE $PS_SYMBOL $COLOR_RESET"
+            local symbol="$COLOR_FAILURE$PS_SYMBOL$COLOR_RESET"
         fi
 
         local cwd="$COLOR_CWD\w$COLOR_RESET"
@@ -83,7 +83,8 @@ __powerline() {
             local git="$COLOR_GIT$(__git_info)$COLOR_RESET"
         fi
 
-        PS1="$cwd$git$symbol"
+        #PS1="$cwd$git$symbol"
+        PS1="\u$symbol\h$cwd$git"
     }
 
     PROMPT_COMMAND="ps1${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
